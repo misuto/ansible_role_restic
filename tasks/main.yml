@@ -21,18 +21,18 @@
   loop_control:
     loop_var: loop_distribution
   vars:
-    distribution: '{{ ansible_distribution }}'
-    distribution_version: '{{ ansible_distribution_version }}'
-    distribution_major_version: '{{ ansible_distribution_major_version }}'
+    distribution: '{{ ansible_fact.distribution }}'
+    distribution_version: '{{ ansible_fact.distribution_version }}'
+    distribution_major_version: '{{ ansible_fact.distribution_major_version }}'
 
 - name: Schedule restic backup
   ansible.builtin.include_tasks: 'schedule.yml'
   loop_control:
     loop_var: loop_distribution
   vars:
-    distribution: '{{ ansible_distribution }}'
-    distribution_version: '{{ ansible_distribution_version }}'
-    distribution_major_version: '{{ ansible_distribution_major_version }}'
+    distribution: '{{ ansible_fact.distribution }}'
+    distribution_version: '{{ ansible_fact.distribution_version }}'
+    distribution_major_version: '{{ ansible_fact.distribution_major_version }}'
 
 - name: Run backups now
   ansible.builtin.include_tasks: 'run_backup.yml'
